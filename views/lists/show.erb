@@ -1,0 +1,35 @@
+<form  id='new-item' action='/items' method='post'>
+	<fieldset>  
+		<legend>Add An Item</legend>
+			<input name='item[list_id]' type='hidden' value='<%= @list.id %>'/>
+			<input name='item[title]' type='text' style='float: left;margin:0;margin-right: 10px'/>
+			<input type='submit' value='Go'/>
+		</fieldset>
+</form>
+
+<form id='new-list' action='/lists' method='post'>
+	<fieldset>
+		<legend>Add A list</legend>
+		<input type='text' name='list[title]'>
+		<input type='submit' value='Go'>
+	</fieldset>
+</form>
+
+<form method="post" action="/lists" id='destroy'>
+  <input type='hidden' name="_method" value="delete" />
+  <div><button type="submit">Destroy This List</button></div>
+	<input type='hidden' name='id' value='<%= @list.id %>'>
+</form>   
+
+<ul id='list_items'>
+<% @list.list_items.find(:all,:order => 'completed ASC,position ASC').each do |item,index| %>
+	<%= erb(:'items/_item', :layout => false,:locals=>{:item=>item}) %>
+<% end unless @list.blank? %>
+</ul>
+           
+<script type="text/javascript">
+window.resizeTo(620,700)
+	//<![CDATA[
+	Sortable.create("list_items", {onUpdate:function(){new Ajax.Request('/items/sort', {asynchronous:true, evalScripts:true, parameters:Sortable.serialize("list_items")})}})
+	//]]>  
+</script>

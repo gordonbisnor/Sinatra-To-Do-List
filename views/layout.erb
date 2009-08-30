@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title><%= @page_title || APP_CONFIG.site_name %></title>
+		<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="distribution" content="all" />
+		<meta name="robots" content="all" />	
+		<meta name="resource-type" content="document" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+		<link href="/stylesheets/base.css" media="screen" rel="stylesheet" type="text/css" />
+	  <script src="http://www.google.com/jsapi"></script>
+		<script type='text/javascript'>
+			google.load("prototype", "1.6");
+		  google.load("scriptaculous", "1.8.2");
+	 	</script>
+	</head>
+	<body>
+	<div id='container'>
+		<div id='header'>
+			<div class='lists'>
+				<% @lists.each do |list| %>
+					<% if defined?(@list) && list.id == @list.id %>
+						<%= "<a class='active' href='/lists/#{list.id}'>#{list.title}</a>" %>
+					<% else %>
+						<%= "<a href='/lists/#{list.id}'>#{list.title}</a>" %>
+					<% end %>
+				<% end %>
+			</div>
+			<a href='/'>Home</a><a href='/lists'>Lists</a><a href="http://www.isnorcreative.com">info</a>
+		</div>                                
+		<div id='content'>      
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

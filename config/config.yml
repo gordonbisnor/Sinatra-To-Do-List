@@ -1,0 +1,18 @@
+---
+  environment: production
+  chdir: /home/me/webapps/todolist
+  address: 127.0.0.1
+  user: me
+  password: mine
+  group: mygroup
+  port: myport
+  rackup: /home/me/webapps/todolist/config/config.ru
+  log: /home/me/webapps/todolist/thin.log
+  max_conns: 1024
+  timeout: 30
+  max_persistent_conns: 512
+  daemonize: true
+  site_name: 'To Do List'
+  author: me
+  url_base: http://localhost:4567/
+  db: db/todolist.sqlite3.db

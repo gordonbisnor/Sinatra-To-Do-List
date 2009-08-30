@@ -1,0 +1,6 @@
+<h2>Lists</h2> 
+<ul>
+	<% @lists.each do |list| %>
+		<%= erb(:'lists/_list', :layout => false,:locals=>{:list=>list}) %>
+	<% end %>
+</ul>

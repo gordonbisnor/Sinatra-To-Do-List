@@ -1,0 +1,12 @@
+<li class='list'>                                       
+	<p>
+		<a href='/lists/<%= list.id %>'>
+			List # <%= list.id %> - <%= list.title %>
+		</a>
+	</p>   
+	<form method="post" action="/lists">
+	  <input type='hidden' name="_method" value="delete" />
+	  <div><button type="submit">Destroy</button></div>
+		<input type='hidden' name='id' value='<%= list.id %>'>
+	</form>   
+</li>

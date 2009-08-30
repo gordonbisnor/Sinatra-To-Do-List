@@ -1,0 +1,26 @@
+<li id='item_<%= item.id %>' class='<%= completed? item %>'>
+<table cellspacing="0" cellpadding="0">
+<tr>
+	<td class='title'>
+		<%= item.title %>
+	</td>      
+	<% unless item.completed %>
+	<td class="complete">
+	 	<form method="post" action="/items">
+		  <input type='hidden' name="_method" value="put" />
+			<input type='hidden' name='list[completed]' value='1'>
+		  <div><button type="submit">Complete</button></div>
+		<input type='hidden' name='id' value='<%= item.id %>'>
+		</form> 
+	</td>                    
+	<% end %>
+	<td class='delete'>
+		<form method="post" action="/items">
+		  <input type='hidden' name="_method" value="delete" />
+		  <div><button type="submit">Destroy</button></div>
+		<input type='hidden' name='id' value='<%= item.id %>'>
+		</form> 
+	</td>   
+</tr>
+</table>
+</li>
